@@ -1,0 +1,31 @@
+<!--
+This file contains a list of all the external dependencies used in ASP.NET Core. These dependencies
+are expressed as `<LatestPackageReference>`. These are used as inputs reference resolution, and
+may be turned into `<PackageReference>` items in projects.
+`<BaselinePackageReference>` items should not be in this file. Those items appear in Baseline.Designer.props
+and are generated based on the last package release.
+-->
+<Project>
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <InfrastructurePackageVersion>1.0.0-master.*</InfrastructurePackageVersion>
+  </PropertyGroup>
+
+  <ItemDefinitionGroup>
+    <InfrastructurePackageReference>
+      <!-- Required. Expected to be an exact package version. Wildcards are not allowed. -->
+      <Version></Version>
+    </InfrastructurePackageReference>
+  </ItemDefinitionGroup>
+
+  <ItemGroup>
+    <!-- Required References: Infrastructure -->
+    <InfrastructurePackageReference Include="Thunder.Platform.Core" Version="$(InfrastructurePackageVersion)" />
+    <InfrastructurePackageReference Include="Thunder.Platform.Caching" Version="$(InfrastructurePackageVersion)" />
+    <InfrastructurePackageReference Include="Thunder.Platform.EntityFrameworkCore" Version="$(InfrastructurePackageVersion)" />
+    <InfrastructurePackageReference Include="Thunder.Platform.Hangfire" Version="$(InfrastructurePackageVersion)" />
+    <InfrastructurePackageReference Include="Thunder.Platform.Testing" Version="$(InfrastructurePackageVersion)" />
+    <InfrastructurePackageReference Include="Thunder.Platform.ThunderBus" Version="$(InfrastructurePackageVersion)" />
+    <InfrastructurePackageReference Include="Thunder.Platform.AspNetCore" Version="$(InfrastructurePackageVersion)" />
+  </ItemGroup>
+</Project>

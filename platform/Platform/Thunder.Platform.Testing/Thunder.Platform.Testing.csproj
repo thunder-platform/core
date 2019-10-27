@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <!--Nuget Package References-->
+
+  <!--Thunder Package References-->
+  <ItemGroup>
+    <Reference Include="Thunder.Platform.Core" />
+  </ItemGroup>
+
+  <!--Others-->
+
+</Project>

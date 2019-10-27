@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <!--Nuget Package References-->
+  <ItemGroup>
+    <PackageReference Include="System.Runtime.Caching" Version="$(SystemRuntimeCachingPackageVersion)" />
+    <PackageReference Include="StackExchange.Redis" Version="$(StackExchangeRedisPackageVersion)" />
+  </ItemGroup>
+
+  <!--Thunder Package References-->
+  <ItemGroup>
+    <Reference Include="Thunder.Platform.Core" />
+  </ItemGroup>
+
+  <!--Others-->
+
+</Project>

@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <!--Nuget Package References-->
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <!--Thunder Package References-->
+  <ItemGroup>
+    <Reference Include="Thunder.Platform.Core" />
+  </ItemGroup>
+
+  <!--Others-->
+
+</Project>

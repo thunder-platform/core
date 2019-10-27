@@ -1,0 +1,10 @@
+{
+  "ThunderLoggingOptions": {
+    "LogRestrictedToMinimumLevel": "Debug",
+    "LogFileSizeLimitBytes": 10485760,
+    "LogOutputTemplate": "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] [{OriginIp}] [{Environment}] [{ProcessId}] [{RequestId}] [{TenantId}] [{Username}] {Message:lj}{NewLine}{Exception} {Properties:j}",
+    "LogPathFormat": "logs/thunderlog_.log",
+    "RetainedFileCountLimit": 1
+  },
+  "ThunderSecretKey": "fUOdC1AMmu24Hz1u5GVBhR7JiPyQWnE4"
+}

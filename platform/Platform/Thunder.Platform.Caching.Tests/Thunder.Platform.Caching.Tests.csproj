@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Thunder.Platform.Caching\Thunder.Platform.Caching.csproj" />
+    <ProjectReference Include="..\Thunder.Platform.Testing\Thunder.Platform.Testing.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,33 @@
+#!/usr/bin/env node
+
+const { spawnSync } = require('child_process');
+const fs = require('fs');
+const path = require('path');
+
+const monorepoJsonPath = path.join(__dirname, 'monorepo.json');
+const monorepoJson = JSON.parse(fs.readFileSync(monorepoJsonPath, 'utf-8'));
+const stagedFiles = getStagedFiles();
+const gitRoot = path.resolve(__dirname, '..');
+
+Object.keys(monorepoJson).forEach(packageName => {
+  const monorepoPrecommitPath = path.join(process.cwd(), monorepoJson[packageName]);
+  const monorepoRoot = path.join(path.dirname(monorepoPrecommitPath), '..');
+  const monorepoRelativePath = path.relative(gitRoot, monorepoRoot).replace(/\\/ig, '/');
+
+  const canRunLintStaged = stagedFiles.some(file => file.startsWith(monorepoRelativePath));
+  if (canRunLintStaged) {
+    process.chdir(monorepoRoot);
+    require(monorepoPrecommitPath);
+  }
+});
+
+function getStagedFiles() {
+  const result = spawnSync('git', ['diff', '--cached', '--name-only']);
+
+  if (result.status !== 0) {
+    console.error('Get git staged files error.');
+    process.exit(1);
+  }
+
+  return result.stdout.toString().trim().split('\n');
+}

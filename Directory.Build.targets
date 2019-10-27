@@ -1,0 +1,28 @@
+<Project>
+  <Import Project="Sdk.targets" Sdk="Thunder.BuildSystem.Sdk" />
+
+  <PropertyGroup>
+    <PackageId Condition=" '$(PackageId)' == '' ">$(AssemblyName)</PackageId>
+
+    <!-- Implementation projects are the projects which produce nuget packages or shipping assemblies. -->
+    <IsPlatformProject Condition=" '$(IsPlatformProject)' == '' AND '$(IsTestProject)' != 'true' ">true</IsPlatformProject>
+
+    <!-- This determines whether a project is available as a <Reference> to other projects in this repo. -->
+    <IsProjectReferenceProvider Condition=" '$(IsProjectReferenceProvider)' == '' AND '$(IsPlatformProject)' == 'true' ">true</IsProjectReferenceProvider>
+
+    <IsPackable Condition="'$(IsPackable)' == '' AND '$(IsPlatformProject)' == 'true' ">true</IsPackable>
+    <IsPackable Condition="'$(IsPackable)' == '' AND '$(IsTestProject)' == 'true' ">false</IsPackable>
+
+    <AutoGenerateBindingRedirects Condition=" '$(IsTestProject)' == 'true'  ">False</AutoGenerateBindingRedirects>
+
+    <DebugType>Full</DebugType>
+
+    <UseInfrastructurePackageReferences Condition="'$(UseInfrastructurePackageReferences)' == ''">false</UseInfrastructurePackageReferences>
+  </PropertyGroup>
+
+  <Target Name="_EnsureFolderExisted" BeforeTargets="Build">
+    <MakeDir Directories="@(CreateDirectory)" ContinueOnError="True" />
+  </Target>
+
+  <Import Project="$(RepositoryEngineeringDir)\ResolveReferences.targets" />
+</Project>

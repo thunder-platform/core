@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <!--Nuget Package References-->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="$(MicrosoftEntityFrameworkCorePackageVersion)" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="$(MicrosoftEntityFrameworkCoreRelationalPackageVersion)" />
+  </ItemGroup>
+
+  <!--Thunder Package References-->
+  <ItemGroup>
+    <Reference Include="Thunder.Platform.Core" />
+  </ItemGroup>
+
+  <!--Others-->
+
+</Project>

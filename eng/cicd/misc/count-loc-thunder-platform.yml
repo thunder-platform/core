@@ -1,0 +1,17 @@
+name: $(Date:yyyyMMdd)$(rev:.r)
+
+trigger: none
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+- task: ChocoInstallPackage@1
+  inputs:
+    packageId: 'cloc'
+- task: CmdLine@2
+  inputs:
+    script: 'cloc $(Build.SourcesDirectory)'

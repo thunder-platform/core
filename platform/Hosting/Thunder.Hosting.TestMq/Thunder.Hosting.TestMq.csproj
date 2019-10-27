@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UserSecretsId>dotnet-Thunder.Hosting.TestMq-DA75D93C-C574-4B41-A5EC-903393E2486A</UserSecretsId>
+  </PropertyGroup>
+
+  <!--Nuget Package References-->
+  <ItemGroup>
+    <PackageReference Include="Serilog.AspNetCore" Version="$(SerilogAspNetCorePackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="$(MicrosoftExtensionsHostingPackageVersion)" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Platform\Thunder.Platform.Core\Thunder.Platform.Core.csproj" />
+  </ItemGroup>
+
+  <!--Thunder Package References-->
+  <ItemGroup>
+    <Reference Include="Thunder.Platform.ThunderBus" />
+  </ItemGroup>
+
+  <!--Others-->
+  <ItemGroup>
+    <None Remove="logs\**" />
+  </ItemGroup>
+
+</Project>

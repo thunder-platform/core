@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <!--Nuget Package References-->
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="$(FluentValidationPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="$(MicrosoftExtensionsOptionsConfigurationExtensionsPackageVersion)" />
+    <PackageReference Include="Serilog" Version="$(SerilogPackageVersion)" />
+    <PackageReference Include="Serilog.Exceptions" Version="$(SerilogExceptionsPackageVersion)" />
+    <PackageReference Include="Serilog.Sinks.File" Version="$(SerilogSinksFilePackageVersion)" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="$(SerilogSinksConsolePackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="$(MicrosoftExtensionsOptionsPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="$(MicrosoftExtensionsConfigurationPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="$(MicrosoftExtensionsConfigurationJsonPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="$(MicrosoftExtensionsConfigurationBinderPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="$(MicrosoftExtensionsDependencyInjectionPackageVersion)" />
+    <PackageReference Include="Scrutor" Version="$(ScrutorPackageVersion)" />
+    <PackageReference Include="Polly" Version="$(PollyPackageVersion)" />
+    <PackageReference Include="JetBrains.Annotations" Version="$(JetBrainsAnnotationsPackageVersion)" />
+    <PackageReference Include="System.Collections.Immutable" Version="$(SystemCollectionsImmutablePackageVersion)" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="$(SystemLinqDynamicCorePackageVersion)" />
+  </ItemGroup>
+
+  <!--Thunder Package References-->
+
+  <!--Others-->
+
+</Project>

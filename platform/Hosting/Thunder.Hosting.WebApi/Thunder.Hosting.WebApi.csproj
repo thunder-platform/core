@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>
+  </PropertyGroup>
+
+  <!--Nuget Package References-->
+  <ItemGroup>
+    <PackageReference Include="Serilog.AspNetCore" Version="$(SerilogAspNetCorePackageVersion)" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="$(SwashbuckleAspNetCorePackageVersion)" />
+  </ItemGroup>
+
+  <!--Thunder Package References-->
+  <ItemGroup>
+    <Reference Include="Thunder.Platform.Core" />
+    <Reference Include="Thunder.Platform.Caching" />
+    <Reference Include="Thunder.Platform.EntityFrameworkCore" />
+    <Reference Include="Thunder.Platform.AspNetCore" />
+  </ItemGroup>
+
+  <!--Others-->
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Shared\thundersettings.json" Link="thundersettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\Shared\ThunderSwaggerMiddlewareExtensions.cs" Link="ThunderSwaggerMiddlewareExtensions.cs" />
+    <Compile Include="..\..\Shared\ThunderSwaggerServiceCollectionExtensions.cs" Link="ThunderSwaggerServiceCollectionExtensions.cs" />
+    <Compile Include="..\..\Shared\SimpleAuthorizationFilter.cs" Link="SimpleAuthorizationFilter.cs" />
+    <Compile Include="..\..\Shared\ThunderAuthenticationMiddleware.cs" Link="ThunderAuthenticationMiddleware.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="logs\**" />
+  </ItemGroup>
+
+</Project>

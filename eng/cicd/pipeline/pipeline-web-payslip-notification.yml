@@ -1,0 +1,48 @@
+name: $(Date:yyyyMMdd)$(rev:.r)
+
+trigger: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  buildConfiguration: 'Release'
+
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    steps:
+    - task: Yarn@3
+      inputs:
+        projectDirectory: 'platform-frontend'
+    - task: Yarn@3
+      inputs:
+        projectDirectory: 'platform-frontend/apps/osd-payslip'
+        arguments: 'build'
+    - task: ArchiveFiles@2
+      inputs:
+        rootFolderOrFile: 'platform-frontend/apps/osd-payslip/build'
+        includeRootFolder: false
+        archiveType: 'zip'
+        archiveFile: 'platform-frontend/apps/osd-payslip/build/drop.zip'
+        replaceExistingArchive: true
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: 'platform-frontend/apps/osd-payslip/build/drop.zip'
+        ArtifactName: 'PayslipNotificationWebPackage'
+        publishLocation: 'Container'
+- stage: Deploy
+  jobs:
+    - job: Deploy
+      steps:
+        - task: AzureRmWebAppDeployment@4
+          inputs:
+            ConnectionType: 'AzureRM'
+            azureSubscription: 'Visual Studio Enterprise – MPN (45616612-6438-455a-8c03-2bc760e9cd4c)'
+            appType: 'webApp'
+            WebAppName: 'orient-payslip'
+            packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+            enableCustomDeployment: true
+            DeploymentType: 'webDeploy'
+            RemoveAdditionalFilesFlag: true

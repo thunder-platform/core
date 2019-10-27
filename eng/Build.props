@@ -1,0 +1,24 @@
+<Project>
+
+  <ItemGroup>
+    <!-- Because the build agent doesn't support COM build for zkemkeeper, we skip this. -->
+    <ProjectToExclude Include="$(RepoRoot)\platform\**\Thunder.Timesheet.Connector.Fas.csproj" />
+
+    <!-- .NET Core 3.0 azure function is not yet supported by Azure Agent. -->
+    <ProjectToExclude Include="$(RepoRoot)\platform\**\Thunder.Toolkit.AzureFunction.ThunderBot.csproj" />
+  </ItemGroup>
+
+  <Choose>
+    <!-- Project selection can be overridden on the command line by passing in -projects -->
+    <When Condition="'$(ProjectToBuild)' != ''">
+      <ItemGroup>
+        <ProjectToBuild Include="$(ProjectToBuild)" Exclude="@(ProjectToExclude);$(RepoRoot)**\bin\**\*;$(RepoRoot)**\obj\**\*" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <ProjectToBuild Include="$(RepoRoot)\platform\**\*.csproj" Exclude="@(ProjectToExclude);$(RepoRoot)**\bin\**\*;$(RepoRoot)**\obj\**\*" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+</Project>

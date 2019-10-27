@@ -1,0 +1,40 @@
+name: $(Date:yyyyMMdd)$(rev:.r)
+
+trigger: none
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  projectToDeploy: 'Thunder.Service.PayslipNotification'
+  artifactPathToPublish: 'platform/Services/PayslipNotification/drop.zip'
+  artifactName: 'PayslipNotificationPackage'
+
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    steps:
+    - task: CmdLine@2
+      inputs:
+        script: '$(Build.SourcesDirectory)/build.cmd -r -rebuild /p:ProjectToDeploy=''$(projectToDeploy)'' /p:Configuration=Release /p:RuntimeIdentifier=''win-x64'' /p:UseAppHost=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:DesktopBuildPackageLocation="drop.zip" /p:SelfContained=true'
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: $(artifactPathToPublish)
+        ArtifactName: $(artifactName)
+        publishLocation: 'Container'
+- stage: Deploy
+  jobs:
+    - job: Deploy
+      steps:
+        - task: AzureRmWebAppDeployment@4
+          inputs:
+            ConnectionType: 'AzureRM'
+            azureSubscription: 'Visual Studio Enterprise – MPN (45616612-6438-455a-8c03-2bc760e9cd4c)'
+            appType: 'webApp'
+            WebAppName: 'thunder-service-payslipnotification'
+            packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+            enableCustomDeployment: true
+            DeploymentType: 'webDeploy'
+            RemoveAdditionalFilesFlag: true

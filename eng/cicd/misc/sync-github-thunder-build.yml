@@ -1,0 +1,17 @@
+name: $(Date:yyyyMMdd)$(rev:.r)
+
+trigger: none
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+- task: mirror-git-repository-vsts-task@1
+  inputs:
+    sourceGitRepositoryUri: 'https://dev.azure.com/orientsoftwaredevelopment/ThunderPlatform/_git/ThunderBuild'
+    sourceGitRepositoryPersonalAccessToken: 'xuyhc3kh2cdomyxqpzptdgggmxsi4tc3uefehov3h36k5ljxzjlq'
+    destinationGitRepositoryUri: 'https://github.com/thunder-platform/thunder-build'
+    destinationGitRepositoryPersonalAccessToken: '21269689633e149c2dd557db298dede073c6e4cd'

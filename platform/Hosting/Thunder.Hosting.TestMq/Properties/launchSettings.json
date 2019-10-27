@@ -1,0 +1,10 @@
+﻿{
+  "profiles": {
+    "Thunder.Hosting.TestMq": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

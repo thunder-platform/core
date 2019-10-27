@@ -1,0 +1,33 @@
+name: $(Date:yyyyMMdd)$(rev:.r)
+
+trigger: none
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      $url = "https://thunder-service-thunderbot.azurewebsites.net/api/thunderbot/syncSourceCodeToGitHub"
+      $body = @"
+      {
+          "Version": "$(bot.targetVersion)",
+          "BranchName": "master",
+          "Repositories": [
+              "https://dev.azure.com/orientsoftwaredevelopment/ThunderPlatform/_git/ThunderPlatform",
+              "https://dev.azure.com/orientsoftwaredevelopment/ThunderPlatform/_git/ThunderBuild"
+          ]
+      }
+      "@
+      $header = @{
+       "Accept"="application/json"
+       "Content-Type"="application/json"
+       "ThunderSecretKey"="fUOdC1AMmu24Hz1u5GVBhR7JiPyQWnE4"
+      }
+
+      Invoke-RestMethod -Method Post -Uri $url -Body $body -Headers $header | ConvertTo-Json
